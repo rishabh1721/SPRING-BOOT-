@@ -15,8 +15,12 @@ public class Module1OfLearningApplication implements CommandLineRunner {
 //	@Autowired
 //	PaymentService ps2;
 
-	@Autowired
-	NotificationService notificationServiceObj;
+//	@Autowired
+	final NotificationService notificationServiceObj;
+
+	public Module1OfLearningApplication(NotificationService notificationServiceObj) {
+		this.notificationServiceObj = notificationServiceObj;
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(Module1OfLearningApplication.class, args);
