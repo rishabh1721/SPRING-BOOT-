@@ -7,6 +7,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @SpringBootApplication
 public class Module1OfLearningApplication implements CommandLineRunner {
 
@@ -16,11 +19,14 @@ public class Module1OfLearningApplication implements CommandLineRunner {
 //	PaymentService ps2;
 
 //	@Autowired
-	final NotificationService notificationServiceObj;
+//	final NotificationService notificationServiceObj;
+//
+//	public Module1OfLearningApplication(NotificationService notificationServiceObj) {
+//		this.notificationServiceObj = notificationServiceObj; // constructor dependency injection
+//	}
 
-	public Module1OfLearningApplication(NotificationService notificationServiceObj) {
-		this.notificationServiceObj = notificationServiceObj;
-	}
+	@Autowired
+	Map<String,NotificationService> NotificationServiceMap = new HashMap<>();
 
 	public static void main(String[] args) {
 		SpringApplication.run(Module1OfLearningApplication.class, args);
@@ -38,8 +44,13 @@ public class Module1OfLearningApplication implements CommandLineRunner {
 //
 //		notificationServiceObj.send("Hello World");
 
-//		notficationServiceObj = new SmsNotificationService();
-		notificationServiceObj.send("hello");
+////		notficationServiceObj = new SmsNotificationService();
+//		notificationServiceObj.send("hello");
+
+		for(var notificationService : NotificationServiceMap.entrySet()){
+			System.out.println(notificationService.getKey());
+			notificationService.getValue().send("hello");
+		}
 
 
 
